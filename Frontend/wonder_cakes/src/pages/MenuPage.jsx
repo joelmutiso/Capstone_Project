@@ -53,6 +53,12 @@ const Menupage = () => {
                 <h3 className="text-2xl font-semibold mb-2 text-gray-800">{product.name}</h3>
                 <p className="text-gray-600 mb-4">{product.description}</p>
                 <span className="text-3xl font-bold text-purple-600">${product.price}</span>
+                 <button 
+                    onClick={() => handleAddToCart(product)}
+                    className="bg-purple-600 text-white font-bold py-2 px-4 rounded-full hover:bg-purple-700 transition-colors duration-300"
+                  >
+                    Add to Cart
+                  </button>
               </div>
             </div>
           ))}
