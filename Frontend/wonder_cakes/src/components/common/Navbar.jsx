@@ -10,6 +10,9 @@ function Navbar() {
         <li>
           <Link to="/menu" className="font-semibold text-lg hover:underline">Menu</Link>
         </li>
+        <li>
+          <Link to="/about" className="font-semibold text-lg hover:underline">About Us</Link>
+        </li>
       </ul>
     </nav>
   );

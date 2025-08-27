@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import ProductCard from '../components/common/ProductCard';
 
 const MenuPage = () => {
     const [products, setProducts] = useState([]);
@@ -7,7 +8,6 @@ const MenuPage = () => {
 
     useEffect(() => {
         const fetchProducts = async () => {
-            
             const token = localStorage.getItem('token');
             
             if (!token) {
@@ -61,13 +61,7 @@ const MenuPage = () => {
                 <h1 className="text-5xl font-extrabold text-center mb-12 text-purple-600">Our Delicious Menu</h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     {products.map(product => (
-                        <div key={product.id} className="bg-white rounded-lg shadow-xl overflow-hidden transform hover:scale-105 transition-transform duration-300">
-                            <div className="p-6">
-                                <h3 className="text-2xl font-semibold mb-2 text-gray-800">{product.name}</h3>
-                                <p className="text-gray-600 mb-4">{product.description}</p>
-                                <span className="text-3xl font-bold text-purple-600">${product.price}</span>
-                            </div>
-                        </div>
+                        <ProductCard key={product.id} product={product} />
                     ))}
                 </div>
             </section>
