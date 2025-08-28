@@ -45,3 +45,48 @@ class AddCartItemView(generics.CreateAPIView):  # API View to add items to the c
             )
             serializer = CartItemSerializer(cart_item)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
+class UpdateCartItemView(generics.UpdateAPIView): # API View to update the quantity of a cart item
+    queryset = CartItem.objects.all()
+    serializer_class = CartItemSerializer
+    permission_classes = [IsAuthenticated]
+    lookup_field = 'pk'
+
+    def update(self, request, *args, **kwargs):
+        quantity = request.data.get('quantity')
+        if quantity is None:
+            return Response({'error': 'Quantity is required.'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            new_quantity = int(quantity)
+            if new_quantity <= 0:
+                return Response({'error': 'Quantity must be a positive integer.'}, status=status.HTTP_400_BAD_REQUEST)
+        except (ValueError, TypeError):
+            return Response({'error': 'Quantity must be a valid number.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        instance = self.get_object()
+        
+        if instance.cart.user != self.request.user:
+            return Response({'error': 'You do not have permission to update this item.'}, status=status.HTTP_403_FORBIDDEN)
+
+        instance.quantity = new_quantity
+        instance.save()
+        
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class RemoveCartItemView(generics.DestroyAPIView): # API View to remove items from the cart
+    queryset = CartItem.objects.all()
+    serializer_class = CartItemSerializer
+    permission_classes = [IsAuthenticated]
+    lookup_field = 'pk'
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+
+        if instance.cart.user != self.request.user:
+            return Response({'error': 'You do not have permission to delete this item.'}, status=status.HTTP_403_FORBIDDEN)
+
+        self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
