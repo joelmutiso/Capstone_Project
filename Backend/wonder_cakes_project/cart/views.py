@@ -6,7 +6,7 @@ from .models import Cart, CartItem
 from .serializers import CartSerializer, CartItemSerializer
 from bakery.models import Product
 
-class CartView(generics.RetrieveAPIView):  # API View to retrieve the user's cart
+class CartView(generics.RetrieveAPIView): # API view to retrieve the cart
     serializer_class = CartSerializer
     permission_classes = [IsAuthenticated]
 
@@ -15,38 +15,27 @@ class CartView(generics.RetrieveAPIView):  # API View to retrieve the user's car
         cart, created = Cart.objects.get_or_create(user=user)
         return cart
 
-class AddCartItemView(generics.CreateAPIView):  # API View to add items to the cart
+class AddCartItemView(generics.CreateAPIView): # API view to add an item to the cart
     serializer_class = CartItemSerializer
     permission_classes = [IsAuthenticated]
 
-    def create(self, request, *args, **kwargs):
-        product_id = request.data.get('product_id')
-        quantity = request.data.get('quantity', 1)
-
-        try:
-            product = Product.objects.get(id=product_id)
-        except Product.DoesNotExist:
-            return Response({'error': 'Product not found.'}, status=status.HTTP_404_NOT_FOUND)
-
-        user = request.user
+    def perform_create(self, serializer):
+        user = self.request.user
         cart, created = Cart.objects.get_or_create(user=user)
+        product = serializer.validated_data['product']
+        quantity = serializer.validated_data.get('quantity', 1)
 
         try:
             cart_item = CartItem.objects.get(cart=cart, product=product)
-            cart_item.quantity += int(quantity)
+            cart_item.quantity += quantity
             cart_item.save()
-            serializer = CartItemSerializer(cart_item)
-            return Response(serializer.data, status=status.HTTP_200_OK)
+            
+            return Response(CartItemSerializer(cart_item).data, status=status.HTTP_200_OK)
         except CartItem.DoesNotExist:
-            cart_item = CartItem.objects.create(
-                cart=cart,
-                product=product,
-                quantity=quantity
-            )
-            serializer = CartItemSerializer(cart_item)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        
-class UpdateCartItemView(generics.UpdateAPIView): # API View to update the quantity of a cart item
+            
+            serializer.save(cart=cart)
+
+class UpdateCartItemView(generics.UpdateAPIView): # API view to update an item in the cart
     queryset = CartItem.objects.all()
     serializer_class = CartItemSerializer
     permission_classes = [IsAuthenticated]
@@ -76,7 +65,7 @@ class UpdateCartItemView(generics.UpdateAPIView): # API View to update the quant
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class RemoveCartItemView(generics.DestroyAPIView): # API View to remove items from the cart
+class RemoveCartItemView(generics.DestroyAPIView): # API view to remove an item from the cart
     queryset = CartItem.objects.all()
     serializer_class = CartItemSerializer
     permission_classes = [IsAuthenticated]
