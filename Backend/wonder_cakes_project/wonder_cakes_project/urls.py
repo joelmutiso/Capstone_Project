@@ -23,5 +23,6 @@ urlpatterns = [
     path('api/bakery/', include('bakery.urls')),
     path('api/cart/', include('cart.urls')),
     path('api/auth/login/', obtain_auth_token,),
+    path('api/', include('checkout.urls')),
 ]
 
