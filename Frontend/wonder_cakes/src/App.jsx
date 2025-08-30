@@ -6,6 +6,8 @@ import LoginPage from './pages/LoginPage.jsx';
 import AboutPage from './pages/AboutPage.jsx';
 import CartPage from './pages/CartPage.jsx';
 import ProductListingPage from './pages/ProductListingPage';
+import ProfilePage from './pages/ProfilePage';
+import SignupPage from './pages/SignupPage';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/" element={<ProductListingPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/signup" element={<SignupPage />} />
       </Routes>
     </Router>
   );
