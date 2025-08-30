@@ -1,20 +1,35 @@
 import React from 'react';
+import useECommerceStore from '../../store/useCartStore';
 
 const ProductCard = ({ product }) => {
-    return (
-    <div className="bg-white rounded-lg shadow-md p-4 flex flex-col">
-        <img src={product.image_url || 'YOUR_PLACEHOLDER_URL_HERE'} className="w-full h-48 object-cover rounded-lg mb-4" alt={product.name} />
+  const addToCart = useECommerceStore((state) => state.addToCart);
 
-        <div className="flex-grow">
-            <h3 className="text-xl font-bold">{product.name}</h3>
-            <p className="text-gray-600 my-2">{product.description}</p>
-        </div>
+  const handleAddToCart = () => {
+    addToCart(product);
+  };
 
-        <div className="mt-auto">
-            <span className="text-lg font-semibold text-indigo-600">${product.price}</span>
-        </div>
+  return (
+    <div className="bg-white rounded-xl shadow-lg p-4 flex flex-col transform transition-transform duration-300 hover:scale-105">
+      <img
+        src={product.image_url || 'https://placehold.co/400x400/374151/ffffff?text=Image'}
+        className="w-full h-48 object-cover rounded-xl mb-4"
+        alt={product.name}
+      />
+      <div className="flex-grow">
+        <h3 className="text-xl font-bold">{product.name}</h3>
+        <p className="text-gray-600 my-2 text-sm">{product.description}</p>
+      </div>
+      <div className="mt-auto flex justify-between items-center">
+        <span className="text-lg font-semibold text-rose-500">Kshs. {product.price.toFixed(2)}</span>
+        <button
+          onClick={handleAddToCart}
+          className="bg-gray-800 text-white font-semibold py-2 px-4 rounded-full text-xs shadow-md hover:bg-rose-500 transition-colors duration-200"
+        >
+          Add to Cart
+        </button>
+      </div>
     </div>
-);
+  );
 };
 
 export default ProductCard;
