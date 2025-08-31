@@ -1,4 +1,4 @@
-Bakery API & Frontend Application
+Wonder Cakes API & Frontend Application
 This is a full-stack application for a fictional bakery, featuring a secure backend API and a responsive frontend built with React and Tailwind CSS. The following report summarizes the successful functionality and security of the API endpoints, as confirmed by comprehensive testing.
 
 Technologies Used
