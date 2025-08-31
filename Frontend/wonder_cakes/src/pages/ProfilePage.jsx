@@ -36,7 +36,6 @@ const ProfilePage = () => {
             <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-xl shadow-lg border border-gray-200 text-center">
                 <FaUserCircle className="mx-auto text-6xl text-rose-500 mb-4" />
                 <h2 className="text-3xl font-bold text-gray-800">Welcome to Your Profile</h2>
-                <p className="text-gray-500">This is a placeholder for your user profile. You can add your order history, account settings, and more here!</p>
                 <button
                     onClick={handleLogout}
                     className="w-full py-2.5 text-lg font-semibold text-white bg-red-500 rounded-lg hover:bg-red-600 transition-colors duration-300"
