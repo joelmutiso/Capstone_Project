@@ -32,8 +32,8 @@ class AddCartItemView(generics.CreateAPIView): # API view to add an item to the 
             
             return Response(CartItemSerializer(cart_item).data, status=status.HTTP_200_OK)
         except CartItem.DoesNotExist:
-            
             serializer.save(cart=cart)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 class UpdateCartItemView(generics.UpdateAPIView): # API view to update an item in the cart
     queryset = CartItem.objects.all()
