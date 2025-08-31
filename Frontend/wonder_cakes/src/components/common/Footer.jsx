@@ -12,7 +12,7 @@ const Footer = () => {
         <div>
           <h3 className="text-xl font-bold text-white mb-4">Wonder Cakes</h3>
           <p className="text-sm leading-relaxed">
-            Creating magical moments with every bite since 2005.
+            Creating magical moments with every bite 😊
           </p>
         </div>
 
@@ -23,7 +23,6 @@ const Footer = () => {
             <li><Link to="/" className="text-gray-300 hover:text-rose-500 transition-colors duration-300">Home</Link></li>
             <li><Link to="/menu" className="text-gray-300 hover:text-rose-500 transition-colors duration-300">Menu</Link></li>
             <li><Link to="/about" className="text-gray-300 hover:text-rose-500 transition-colors duration-300">About Us</Link></li>
-            <li><Link to="/contact" className="text-gray-300 hover:text-rose-500 transition-colors duration-300">Contact</Link></li>
           </ul>
         </div>
 
@@ -31,10 +30,9 @@ const Footer = () => {
         <div>
           <h3 className="text-xl font-bold text-white mb-4">Contact Info</h3>
           <address className="not-italic text-sm space-y-2">
-            <p>123 Baker Street</p>
-            <p>Sweet City, SC 12345</p>
-            <p>(555) 123-CAKE</p>
-            <p>info@wondercakes.com</p> {/* Added email for completeness */}
+            <p>Westcorner House, Along Mundi Mbingu Street</p>
+            <p>0706924004</p>
+            <p>info@wondercakes.com</p>
           </address>
         </div>
 

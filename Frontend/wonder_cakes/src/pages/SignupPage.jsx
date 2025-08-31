@@ -18,7 +18,7 @@ const SignupPage = () => {
         setLoading(true);
 
         try {
-            // Note: This API endpoint must exist on your Django backend.
+            // API endpoint for register Django backend.
             const response = await fetch('http://localhost:8000/api/user/register/', {
                 method: 'POST',
                 headers: {

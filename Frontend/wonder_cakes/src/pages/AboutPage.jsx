@@ -11,7 +11,7 @@ const AboutPage = () => {
               The Wonder Cakes Journey
             </h2>
             <p className="text-md md:text-lg text-gray-600 leading-relaxed">
-              Wonder Cakes began with a simple idea: to create desserts that tell a story. It all started in a small home kitchen, where our founder, Joee Bidens, experimented with family recipes, infusing each cake with love and a touch of magic. The unique flavors and stunning designs quickly gained a following, transforming a passion project into a beloved local bakery. Today, we remain committed to those original values, using only the finest ingredients to craft cakes that celebrate life’s special moments.
+              Wonder Cakes began with a simple idea: to create desserts that tell a story. It all started in a small home kitchen, where our founder, Joel Mutiso, experimented with family recipes, infusing each cake with love and a touch of magic. The unique flavors and stunning designs quickly gained a following, transforming a passion project into a beloved local bakery. Today, we remain committed to those original values, using only the finest ingredients to craft cakes that celebrate life’s special moments.
             </p>
           </div>
 
@@ -25,10 +25,10 @@ const AboutPage = () => {
             </div>
             <div className="text-center md:text-left">
               <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                Joee Bidens
+                Joel Mutiso
               </h3>
               <p className="text-md text-gray-600 mb-4">
-                 Joee leads Wonder Cakes with a passion for quality and creativity, overseeing everything from recipes to design. Her hands-on approach ensures every cake is crafted to brighten someone’s day.
+                 Joel Mutiso leads Wonder Cakes with a passion for quality and creativity, overseeing everything from recipes to design. Her hands-on approach ensures every cake is crafted to brighten someone’s day.
               </p>
             </div>
           </div>
