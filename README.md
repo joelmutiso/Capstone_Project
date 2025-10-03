@@ -154,5 +154,3 @@ All endpoints are hosted at: **[http://127.0.0.1:8000/api/](http://127.0.0.1:800
   * Unauthorized → `401 Unauthorized`.
 
 ---
-
----
